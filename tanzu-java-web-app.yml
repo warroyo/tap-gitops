@@ -13,7 +13,7 @@ spec:
     git:
       ref:
         branch: main
-      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      url: https://github.com/warroyo/tanzu-java-web-app-gitops
   params:
     - name: annotations
       value:
