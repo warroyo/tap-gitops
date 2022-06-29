@@ -24,3 +24,5 @@ spec:
       value: https://github.com/warroyo/tap-gitops
     - name: gitops_branch
       value: main
+    - name: gitops_subpath
+      value: steeltoe
