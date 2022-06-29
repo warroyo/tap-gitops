@@ -15,7 +15,7 @@ spec:
     git:
       url: https://github.com/sample-accelerators/steeltoe-weatherforecast
       ref:
-        branch: tap-1.1
+        branch: main
   params:
     - name: annotations
       value:
