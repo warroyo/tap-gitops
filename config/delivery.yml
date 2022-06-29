@@ -1,46 +1,59 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: steeltoe-weather
+  name: tanzu-java-web-app
   labels:
-    app.kubernetes.io/part-of: steeltoe-weather
+    app.kubernetes.io/part-of: tanzu-java-web-app
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
     kapp.k14s.io/app: "1655842000127906348"
-    kapp.k14s.io/association: v1.ac7aa90800cb21f251150152ef6d6f7f
-    tanzu.app.live.view: "true"
-    tanzu.app.live.view.application.flavours: steeltoe
-    tanzu.app.live.view.application.name: steeltoe-weatherforecast
+    kapp.k14s.io/association: v1.649ae3074ef84e45d7edc6eaf487b073
+    testlabel: test
     app.kubernetes.io/component: run
-    carto.run/workload-name: steeltoe-weather
+    carto.run/workload-name: tanzu-java-web-app
 spec:
   template:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "1"
-        conventions.apps.tanzu.vmware.com/applied-conventions: ""
+        boot.spring.io/actuator: http://:8081/actuator
+        boot.spring.io/version: 2.5.14
+        conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          spring-boot-convention/spring-boot
+          spring-boot-convention/spring-boot-graceful-shutdown
+          spring-boot-convention/spring-boot-web
+          spring-boot-convention/spring-boot-actuator
+          appliveview-sample/app-live-view-connector
+          appliveview-sample/app-live-view-appflavours
+          appliveview-sample/app-live-view-systemproperties
         developer.conventions/target-containers: workload
-        kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/steeltoe-weather;carto.run/v1alpha1
-        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"steeltoe-weather","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.ac7aa90800cb21f251150152ef6d6f7f","tanzu.app.live.view":"true","tanzu.app.live.view.application.flavours":"steeltoe","tanzu.app.live.view.application.name":"steeltoe-weatherforecast"},"name":"steeltoe-weather","namespace":"dev-tap"},"spec":{"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/warroyo/tap-gitops"},{"name":"gitops_branch","value":"main"},{"name":"gitops_subpath","value":"steeltoe"}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/sample-accelerators/steeltoe-weatherforecast"}}}}'
+        kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/tanzu-java-web-app;carto.run/v1alpha1
+        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.649ae3074ef84e45d7edc6eaf487b073","testlabel":"test"},"name":"tanzu-java-web-app","namespace":"dev-tap"},"spec":{"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/warroyo/tap-gitops"},{"name":"gitops_branch","value":"main"}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/warroyo/tanzu-java-web-app-gitops"}}}}'
         kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
       labels:
         app.kubernetes.io/component: run
-        app.kubernetes.io/part-of: steeltoe-weather
+        app.kubernetes.io/part-of: tanzu-java-web-app
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
-        carto.run/workload-name: steeltoe-weather
+        carto.run/workload-name: tanzu-java-web-app
+        conventions.apps.tanzu.vmware.com/framework: spring-boot
         kapp.k14s.io/app: "1655842000127906348"
-        kapp.k14s.io/association: v1.ac7aa90800cb21f251150152ef6d6f7f
+        kapp.k14s.io/association: v1.649ae3074ef84e45d7edc6eaf487b073
         tanzu.app.live.view: "true"
-        tanzu.app.live.view.application.flavours: steeltoe
-        tanzu.app.live.view.application.name: steeltoe-weatherforecast
+        tanzu.app.live.view.application.actuator.port: "8081"
+        tanzu.app.live.view.application.flavours: spring-boot
+        tanzu.app.live.view.application.name: tanzu-java-web-app
+        testlabel: test
     spec:
       containers:
       - env:
         - name: JAVA_TOOL_OPTIONS
-          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:75cb6eeccb02e0d89190de2233c32946e0c3195738909dc3f214ffd48aef867a
+          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: dev.registry.pivotal.io/warroyo/supply-chain/tanzu-java-web-app-dev-tap@sha256:afd1184c1bdb382df5d03e551394b027fa39dcfdf470de5de965cb3ab385a5a9
         name: workload
+        ports:
+        - containerPort: 8080
+          protocol: TCP
         resources: {}
         securityContext:
           runAsUser: 1000
