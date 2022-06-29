@@ -39,7 +39,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:bd6d031014f4e6590bf18c14474ea12bddc15f9e68f77ffdd16460f844502d7f
+        image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:75cb6eeccb02e0d89190de2233c32946e0c3195738909dc3f214ffd48aef867a
         name: workload
         resources: {}
         securityContext:
