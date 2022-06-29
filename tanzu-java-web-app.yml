@@ -21,4 +21,4 @@ spec:
     - name: gitops_repository
       value: https://github.com/warroyo/tap-gitops
     - name: gitops_branch
-      value: main
+      value: tanzu-java-web-app
