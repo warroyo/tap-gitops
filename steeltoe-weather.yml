@@ -23,4 +23,4 @@ spec:
     - name: gitops_repository
       value: https://github.com/warroyo/tap-gitops
     - name: gitops_branch
-      value: steeltoe-weather
+      value: main
