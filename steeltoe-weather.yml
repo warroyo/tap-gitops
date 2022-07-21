@@ -25,7 +25,8 @@ spec:
   - name: gitops_ssh_secret
     value: github-warroyo-secret
   source:
+    subPath: /config/dev-tap/steeltoe-weather
     git:
       ref:
-        branch: steeltoe-weather
+        branch: main
       url: https://github.com/warroyo/tap-gitops
