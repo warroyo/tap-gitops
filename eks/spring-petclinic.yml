@@ -16,7 +16,7 @@ metadata:
     kapp.k14s.io/app: "1655842000127906348"
     kapp.k14s.io/association: v1.fb16eb8b0aed4a10933813c2bf86255f
   name: spring-petclinic
-  namespace: dev-tap
+  namespace: default
 spec:
   params:
   - name: gitops_ssh_secret
