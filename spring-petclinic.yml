@@ -1,0 +1,33 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    app.kubernetes.io/part-of: spring-petclinic
+    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
+  name: spring-petclinic
+  namespace: dev-tap
+spec:
+  env:
+  - name: SPRING_PROFILES_ACTIVE
+    value: postgres
+  params:
+  - name: annotations
+    value:
+      autoscaling.knative.dev/minScale: "1"
+  - name: gitops_repository
+    value: https://github.com/warroyo/tap-gitops
+  - name: gitops_branch
+    value: main
+  serviceClaims:
+  - name: db
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: ack-rds-claim
+  source:
+    git:
+      ref:
+        branch: main
+        tag: tap-1.2
+      url: https://github.com/warroyo/spring-petclinic
