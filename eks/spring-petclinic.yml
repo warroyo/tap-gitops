@@ -21,9 +21,8 @@ spec:
   params:
   - name: gitops_ssh_secret
     value: github-warroyo-secret
-  - name: gitops_sub_path
-    value: config/dev-tap/spring-petclinic
   source:
+    subPath: /config/dev-tap/spring-petclinic
     git:
       ref:
         branch: main
