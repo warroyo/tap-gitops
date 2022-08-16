@@ -4,7 +4,7 @@ metadata:
   name: tanzu-java-web-app
   labels:
     app.kubernetes.io/part-of: tanzu-java-web-app
-    apps.tanzu.vmware.com/nopr: "true"
+    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
     kapp.k14s.io/app: "1655842000127906348"
     kapp.k14s.io/association: v1.649ae3074ef84e45d7edc6eaf487b073
