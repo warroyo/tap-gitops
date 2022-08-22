@@ -50,7 +50,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/tanzu-java-web-app-dev-tap@sha256:b164bf9e03c02e728698107d0b54c4168e3947e0b2261df3c429ea69ab26c78b
+        image: dev.registry.pivotal.io/warroyo/supply-chain/tanzu-java-web-app-dev-tap@sha256:e5586f6affe29f38a61c860e8ec93fb69d3a3d8777df80e26ed55a906db1e2e9
         name: workload
         ports:
         - containerPort: 8080
