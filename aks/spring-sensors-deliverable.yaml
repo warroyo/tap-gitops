@@ -19,7 +19,7 @@ metadata:
     kapp.k14s.io/association: v1.649ae3074ef84e45d7edc6eaf487b073
     testlabel: test
   name: tanzu-java-web-app
-  namespace: dev-tap
+  namespace: default
   resourceVersion: "69814423"
   uid: d9922851-5b19-4500-8c91-cc45ffa8f6d1
 spec:
