@@ -20,7 +20,7 @@ spec:
   - name: gitops_ssh_secret
     value: github-warroyo-secret
   source:
-    subpath: /config/dev-tap/spring-sensors
+    subPath: /config/dev-tap/spring-sensors
     git:
       ref:
         branch: main
