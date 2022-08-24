@@ -14,7 +14,7 @@ metadata:
     carto.run/workload-name: spring-sensors
     carto.run/workload-namespace: dev-tap
   name: spring-sensors
-  namespace: default
+  namespace: sensors
   uid: 07396e21-ce8d-43b3-8999-a6e2028e4629
 spec:
   params:
