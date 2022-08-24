@@ -1,0 +1,37 @@
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  labels:
+    app.kubernetes.io/component: deliverable
+    app.kubernetes.io/part-of: spring-sensors
+    app.tanzu.vmware.com/deliverable-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    carto.run/cluster-template-name: deliverable-template
+    carto.run/resource-name: deliverable
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/template-kind: ClusterTemplate
+    carto.run/workload-name: spring-sensors
+    carto.run/workload-namespace: dev-tap
+  name: spring-sensors
+  namespace: default
+  ownerReferences:
+  - apiVersion: carto.run/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Workload
+    name: spring-sensors
+    uid: 37ce4fc2-a4e3-4cb0-86c6-ce14012277b9
+  resourceVersion: "70727611"
+  uid: 07396e21-ce8d-43b3-8999-a6e2028e4629
+spec:
+  params:
+  - name: gitops_ssh_secret
+    value: github-warroyo-secret
+  - name: gitops_sub_path
+    value: config/dev-tap/spring-sensors
+  source:
+    git:
+      ref:
+        branch: main
+      url: https://github.com/warroyo/tap-gitops.git
