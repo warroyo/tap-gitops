@@ -15,13 +15,6 @@ metadata:
     carto.run/workload-namespace: dev-tap
   name: spring-sensors
   namespace: default
-  ownerReferences:
-  - apiVersion: carto.run/v1alpha1
-    blockOwnerDeletion: true
-    controller: true
-    kind: Workload
-    name: spring-sensors
-    uid: 37ce4fc2-a4e3-4cb0-86c6-ce14012277b9
   resourceVersion: "70727611"
   uid: 07396e21-ce8d-43b3-8999-a6e2028e4629
 spec:
