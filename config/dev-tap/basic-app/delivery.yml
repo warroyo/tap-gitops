@@ -46,7 +46,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/basic-app-dev-tap@sha256:1eacc6316f774ada5085a369982a96b0019284af80b9a0a31d7d724b32dab643
+        image: dev.registry.pivotal.io/warroyo/supply-chain/basic-app-dev-tap@sha256:6082de933355407b5f2e21dde58505bbf17f447c8e9ef268fe60e7ce3675ac90
         name: workload
         ports:
         - containerPort: 8080
