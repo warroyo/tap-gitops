@@ -36,7 +36,7 @@ spec:
         tanzu.app.live.view.application.name: steeltoe-weatherforecast
     spec:
       containers:
-      - image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:03fc935f0df51177d3e97548f68b49f5cddb6afefbe3ca107cb4c2442fe2145b
+      - image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:c56e65d1ae4f7740bdb76a4cf6646b4425a8f26e31f10182fcdc8dade1dca1a0
         name: workload
         resources: {}
         securityContext:
