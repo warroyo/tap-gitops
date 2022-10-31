@@ -2,6 +2,9 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: steeltoe-weather
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
   labels:
     app.kubernetes.io/part-of: steeltoe-weather
     apps.tanzu.vmware.com/has-tests: "true"
@@ -18,7 +21,10 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "1"
-        conventions.apps.tanzu.vmware.com/applied-conventions: appliveview-sample/app-live-view-appflavour-check
+        conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
+          appliveview-sample/app-live-view-connector-steeltoe
+          appliveview-sample/app-live-view-appflavours-steeltoe
         developer.conventions/target-containers: workload
         kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/steeltoe-weather;carto.run/v1alpha1
         kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"steeltoe-weather","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.ac7aa90800cb21f251150152ef6d6f7f","tanzu.app.live.view":"true","tanzu.app.live.view.application.flavours":"steeltoe","tanzu.app.live.view.application.name":"steeltoe-weatherforecast"},"name":"steeltoe-weather","namespace":"dev-tap"},"spec":{"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/warroyo/tap-gitops"},{"name":"gitops_branch","value":"main"}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/warroyo/steeltoe-weatherforecast"}}}}'
@@ -36,7 +42,7 @@ spec:
         tanzu.app.live.view.application.name: steeltoe-weatherforecast
     spec:
       containers:
-      - image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:72ec9b8ba2d2ff9b83724631410c6e6e9e7e8749885238def885cca4b0267c10
+      - image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:c29319c356a9a03d9806d9c54b00c0fc91882b345229504ba2baf55636d7fe84
         name: workload
         resources: {}
         securityContext:
