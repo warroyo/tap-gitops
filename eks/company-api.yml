@@ -19,7 +19,7 @@ spec:
     value: github-warroyo-secret
   source:
     git:
-      url: https://github.com/warroyo/tapqs-gitops.git
+      url: https://github.com/warroyo/tap-gitops.git
       ref:
         branch: main
-    subPath: config/default/company-api
+    subPath: config/dev-tap/company-api
