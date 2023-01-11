@@ -22,6 +22,8 @@ spec:
       annotations:
         autoscaling.knative.dev/minScale: "1"
         conventions.carto.run/applied-conventions: |-
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
           appliveview-sample/app-live-view-appflavour-check
           appliveview-sample/app-live-view-connector-steeltoe
           appliveview-sample/app-live-view-appflavours-steeltoe
@@ -42,7 +44,7 @@ spec:
         tanzu.app.live.view.application.name: steeltoe-weatherforecast
     spec:
       containers:
-      - image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:c29319c356a9a03d9806d9c54b00c0fc91882b345229504ba2baf55636d7fe84
+      - image: dev.registry.pivotal.io/warroyo/supply-chain/steeltoe-weather-dev-tap@sha256:82dc0ee23f43e0bd399c8f1a4eae72dd99432d26ef81cb5274058986591a31ab
         name: workload
         resources: {}
         securityContext:
