@@ -1,0 +1,25 @@
+
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    app.kubernetes.io/part-of: java-harness
+    apps.tanzu.vmware.com/workload-type: server
+    apps.tanzu.vmware.com/has-tests: "true"
+    testlabel: test
+  name: java-harness
+  namespace: dev-tap
+spec:
+  source:
+    git:
+      ref:
+        branch: main
+      url: https://github.com/warroyo/tanzu-java-web-app-gitops
+  params:
+    - name: annotations
+      value:
+        autoscaling.knative.dev/minScale: "1"
+    - name: gitops_repository
+      value: https://github.com/warroyo/tap-gitops
+    - name: gitops_branch
+      value: main
