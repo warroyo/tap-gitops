@@ -55,7 +55,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/tanzu-java-web-app-dev-tap@sha256:e0912c0bf38a84d4e57a753a96359a781a818b5572c3d3810a41ad72fd8e0fcd
+        image: dev.registry.pivotal.io/warroyo/supply-chain/tanzu-java-web-app-dev-tap@sha256:9b1f26f2e45770e131ae56e6dcd18b12441e33001baf0b8c27127c5b5adbed86
         name: workload
         ports:
         - containerPort: 8080
