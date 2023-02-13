@@ -8,7 +8,7 @@ spec:
   gateways:  
   - {{.Values.name}}-gateway  
   hosts:  
-  - test.com  
+  - '*' 
   http:  
   - route:  
     - destination:  
