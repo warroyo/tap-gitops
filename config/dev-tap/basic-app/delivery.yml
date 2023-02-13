@@ -51,7 +51,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/basic-app-dev-tap@sha256:81a2e2fafd312f4afa93aab1146cc418ce92c679f934504bf004b1fbdc159460
+        image: dev.registry.pivotal.io/warroyo/supply-chain/basic-app-dev-tap@sha256:041d74ed8cbebf8bcbc543e094240cf5df6fc43b7c4b6a4c833acd44eca802c1
         name: workload
         ports:
         - containerPort: 8080
