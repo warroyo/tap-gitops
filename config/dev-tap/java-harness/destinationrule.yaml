@@ -5,7 +5,7 @@ metadata:
     harness.io/managed: "true"  
   name: {{.Values.name}}-destinationrule  
 spec:  
-  host: {{.Values.name}}-svc  
+  host: {{.Values.name}}  
   trafficPolicy:  
     loadBalancer:  
       simple: RANDOM
