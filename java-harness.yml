@@ -4,7 +4,7 @@ kind: Workload
 metadata:
   labels:
     app.kubernetes.io/part-of: java-harness
-    apps.tanzu.vmware.com/workload-type: server
+    apps.tanzu.vmware.com/workload-type: harness-canary
     apps.tanzu.vmware.com/has-tests: "true"
     testlabel: test
   name: java-harness
