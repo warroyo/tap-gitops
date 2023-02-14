@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: java-harness
-  annotations: null
-  kapp.k14s.io/update-strategy: fallback-on-replace
-  ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+  annotations:
+    kapp.k14s.io/update-strategy: fallback-on-replace
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
   labels:
     app.kubernetes.io/part-of: java-harness
     apps.tanzu.vmware.com/has-tests: "true"
