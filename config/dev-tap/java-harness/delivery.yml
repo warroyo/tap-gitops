@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: java-harness
-  annotations:
-    kapp.k14s.io/update-strategy: fallback-on-replace
-    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+  annotations: null
+  kapp.k14s.io/update-strategy: fallback-on-replace
+  ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
   labels:
     app.kubernetes.io/part-of: java-harness
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/workload-type: server
+    apps.tanzu.vmware.com/workload-type: harness-canary
     kapp.k14s.io/app: "1655842000127906348"
     kapp.k14s.io/association: v1.8cc43179f802eacfbb1ded22e6292b07
     testlabel: test
@@ -89,7 +89,7 @@ metadata:
   labels:
     app.kubernetes.io/part-of: java-harness
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/workload-type: server
+    apps.tanzu.vmware.com/workload-type: harness-canary
     kapp.k14s.io/app: "1655842000127906348"
     kapp.k14s.io/association: v1.8cc43179f802eacfbb1ded22e6292b07
     testlabel: test
@@ -116,4 +116,47 @@ spec:
   - targetPort: 8080
     port: 8080
     name: http
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  annotations:
+    harness.io/managed: "true"
+  name: java-harness-destinationrule
+spec:
+  host: java-harness
+  trafficPolicy:
+    loadBalancer:
+      simple: RANDOM
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: java-harness-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - '*.{{.Values.baseDomain}}'
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    harness.io/managed: "true"
+  name: java-harness-virtualservice
+spec:
+  gateways:
+  - java-harness-gateway
+  hosts:
+  - java-harness.{{.Values.baseDomain}}
+  http:
+  - route:
+    - destination:
+        host: java-harness
 
