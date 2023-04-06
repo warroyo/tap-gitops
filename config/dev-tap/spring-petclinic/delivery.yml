@@ -7,6 +7,7 @@ metadata:
     ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
   labels:
     app.kubernetes.io/part-of: spring-petclinic
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web
     kapp.k14s.io/app: "1655842000127906348"
@@ -20,6 +21,7 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/minScale: "1"
+        boot.spring.io/actuator: http://:8081/actuator
         boot.spring.io/version: 2.6.9
         conventions.carto.run/applied-conventions: |-
           spring-boot-convention/auto-configure-actuators-check
@@ -36,14 +38,14 @@ spec:
           appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/spring-petclinic;carto.run/v1alpha1
-        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"spring-petclinic","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.fb16eb8b0aed4a10933813c2bf86255f","tanzu.app.live.view":"true","tanzu.app.live.view.application.name":"spring-petclinic"},"name":"spring-petclinic","namespace":"dev-tap"},"spec":{"env":[{"name":"SPRING_PROFILES_ACTIVE","value":"postgres"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/warroyo/tap-gitops"},{"name":"gitops_branch","value":"main"}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"services.apps.tanzu.vmware.com/v1alpha1","kind":"ResourceClaim","name":"ack-rds-claim"}}],"source":{"git":{"ref":{"branch":"main","tag":"tap-1.2"},"url":"https://github.com/warroyo/spring-petclinic"}}}}'
+        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"spring-petclinic","apps.tanzu.vmware.com/auto-configure-actuators":"true","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.fb16eb8b0aed4a10933813c2bf86255f","tanzu.app.live.view":"true","tanzu.app.live.view.application.name":"spring-petclinic"},"name":"spring-petclinic","namespace":"dev-tap"},"spec":{"env":[{"name":"SPRING_PROFILES_ACTIVE","value":"postgres"}],"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/warroyo/tap-gitops"},{"name":"gitops_branch","value":"main"}],"serviceClaims":[{"name":"db","ref":{"apiVersion":"services.apps.tanzu.vmware.com/v1alpha1","kind":"ResourceClaim","name":"ack-rds-claim"}}],"source":{"git":{"ref":{"branch":"main","tag":"tap-1.2"},"url":"https://github.com/warroyo/spring-petclinic"}}}}'
         kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
         services.conventions.carto.run/mysql: mysql-connector-java/8.0.29
         services.conventions.carto.run/postgres: postgresql/42.3.6
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: spring-petclinic
-        apps.tanzu.vmware.com/auto-configure-actuators: "false"
+        apps.tanzu.vmware.com/auto-configure-actuators: "true"
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web
         carto.run/workload-name: spring-petclinic
@@ -54,7 +56,7 @@ spec:
         services.conventions.carto.run/postgres: workload
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.actuator.path: actuator
-        tanzu.app.live.view.application.actuator.port: "8080"
+        tanzu.app.live.view.application.actuator.port: "8081"
         tanzu.app.live.view.application.flavours: spring-boot
         tanzu.app.live.view.application.name: spring-petclinic
     spec:
@@ -63,7 +65,7 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: postgres
         - name: JAVA_TOOL_OPTIONS
-          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
         image: dev.registry.pivotal.io/warroyo/supply-chain/spring-petclinic-dev-tap@sha256:0e5ee6fe4b30ea256c0c8c180a522c8d966773d4c12af5e7b3ae9abe9a4c31f3
         livenessProbe:
           httpGet:
