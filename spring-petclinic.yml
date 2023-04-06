@@ -6,6 +6,7 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     apps.tanzu.vmware.com/has-tests: "true"
     tanzu.app.live.view: "true"
+    apps.tanzu.vmware.com/auto-configure-actuators: "true"
     tanzu.app.live.view.application.name: spring-petclinic
   name: spring-petclinic
   namespace: dev-tap
