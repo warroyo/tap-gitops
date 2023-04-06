@@ -6,6 +6,7 @@ metadata:
     apps.tanzu.vmware.com/workload-type: web
     apps.tanzu.vmware.com/has-tests: "true"
     tanzu.app.live.view: "true"
+    tanzu.app.live.view.application.actuator.path: myapp/actuator
     tanzu.app.live.view.application.name: spring-petclinic
   name: spring-petclinic
   namespace: dev-tap
@@ -13,6 +14,8 @@ spec:
   env:
   - name: SPRING_PROFILES_ACTIVE
     value: postgres
+  - name: SERVER_SERVLET_CONTEXT_PATH
+    value: /myapp
   - name: JAVA_TOOL_OPTIONS
     value: '-Dmanagement.endpoint.health.probes.add-additional-paths=false'
   params:
