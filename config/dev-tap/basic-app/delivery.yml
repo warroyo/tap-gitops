@@ -5,6 +5,7 @@ metadata:
   annotations:
     ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
     ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
   labels:
     app.kubernetes.io/part-of: basic-app
     apps.tanzu.vmware.com/workload-type: basic
@@ -19,6 +20,7 @@ spec:
         autoscaling.knative.dev/minScale: "1"
         boot.spring.io/version: 2.5.14
         conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
@@ -27,7 +29,6 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
-          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/basic-app;carto.run/v1alpha1
         kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"basic-app","apps.tanzu.vmware.com/workload-type":"basic","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.58c5432e8cb2fe93c9d6e790445a200a"},"name":"basic-app","namespace":"dev-tap"},"spec":{"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/warroyo/tap-gitops"},{"name":"gitops_branch","value":"main"}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/warroyo/tanzu-java-web-app-gitops"}}}}'
@@ -51,7 +52,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/basic-app-dev-tap@sha256:372c063a1f06d3c91916da8a77dfc89ce982bc88144319827ac0e97def3b5aa4
+        image: dev.registry.pivotal.io/warroyo/supply-chain/basic-app-dev-tap@sha256:3038e0bacbc0912fad67adb5265ecefe3249f4927fd2082b714dadd135cc1a45
         name: workload
         ports:
         - containerPort: 8080
