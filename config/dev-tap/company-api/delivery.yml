@@ -5,6 +5,7 @@ metadata:
   annotations:
     ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
     ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
   labels:
     apis.apps.tanzu.vmware.com/register-api: "true"
     app.kubernetes.io/part-of: company-api
@@ -19,9 +20,9 @@ spec:
     metadata:
       annotations:
         conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
           spring-boot-convention/auto-configure-actuators-check
           spring-boot-convention/app-live-view-appflavour-check
-          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/company-api;carto.run/v1alpha1
         kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"apis.apps.tanzu.vmware.com/register-api":"true","app.kubernetes.io/part-of":"company-api","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.57af1f31a037d7305e43032152ae1545"},"name":"company-api","namespace":"dev-tap"},"spec":{"build":{"env":[{"name":"BP_KEEP_FILES","value":"docs/*"}]},"params":[{"name":"api_descriptor","value":{"description":"api for company app","location":{"path":"/docs/openapi.json"},"owner":"default","system":"test-installation","type":"openapi"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/warroyo/tap-go-sample"}}}}'
@@ -37,7 +38,7 @@ spec:
         kapp.k14s.io/association: v1.57af1f31a037d7305e43032152ae1545
     spec:
       containers:
-      - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-dev-tap@sha256:569fd6220acd5c973fab7f6de51588330ddb4d90ea67914cc7c08658d1ac269e
+      - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-dev-tap@sha256:9589438dac084dc5f4305a65c44da3a7c1ff07f75113bafb1cfda227da5b9139
         name: workload
         resources: {}
         securityContext:
