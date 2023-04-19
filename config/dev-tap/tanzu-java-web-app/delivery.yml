@@ -5,6 +5,7 @@ metadata:
   annotations:
     ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
     ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
   labels:
     app.kubernetes.io/part-of: tanzu-java-web-app
     apps.tanzu.vmware.com/has-tests: "true"
@@ -29,7 +30,6 @@ spec:
           spring-boot-convention/app-live-view-appflavour-check
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
-          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
         kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/tanzu-java-web-app;carto.run/v1alpha1
         kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.649ae3074ef84e45d7edc6eaf487b073","testlabel":"test"},"name":"tanzu-java-web-app","namespace":"dev-tap"},"spec":{"params":[{"name":"annotations","value":{"autoscaling.knative.dev/minScale":"1"}},{"name":"gitops_repository","value":"https://github.com/warroyo/tap-gitops"},{"name":"gitops_branch","value":"main"}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/warroyo/tanzu-java-web-app-gitops"}}}}'
@@ -55,7 +55,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: dev.registry.pivotal.io/warroyo/supply-chain/tanzu-java-web-app-dev-tap@sha256:c1dfe676c70166e2d33963dc31672a4d25be851a6962250fc48c91e38acc6abe
+        image: dev.registry.pivotal.io/warroyo/supply-chain/tanzu-java-web-app-dev-tap@sha256:026722b3cc5d622ab2e5d17e69c2e6a348a50a0c7f934fa35859bc16c8f2f280
         name: workload
         ports:
         - containerPort: 8080
