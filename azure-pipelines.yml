@@ -11,8 +11,7 @@ trigger:
   paths:
     include:
     - config/dev-tap/tas-java-web-app/*
-pool:
-  vmImage: ubuntu-latest
+
 stages:
  - stage: Deploy
    jobs:
