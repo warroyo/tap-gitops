@@ -22,6 +22,8 @@ stages:
        inputs:
         cfVersion: '6.43.0'
      - task: CloudFoundry@1
+       env:
+         CF_DOCKER_PASSWORD: $(registry-pass)
        inputs:
          cfEndpoint: 'tas'
          skipSSLValidation: true
@@ -31,4 +33,5 @@ stages:
          cfManifest: 'config/dev-tap/tas-java-web-app/delivery.yml'
          createServices: false
          bindServices: false
+         additionalDeployArgs: --docker-username warroyo@pivotal.io
      
