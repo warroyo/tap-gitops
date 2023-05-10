@@ -3,17 +3,32 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+# specific path build
 trigger:
-- main
-
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - config/dev-tap/tas-java-web-app/*
 pool:
   vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+ - stage: Deploy
+   jobs:
+   - job: Deploy
+     steps:
+     - task: CloudFoundryCLIInstall@0
+       inputs:
+        cfVersion: '6.43.0'
+     - task: CloudFoundry@1
+       inputs:
+         cfEndpoint: 'tas'
+         skipSSLValidation: true
+         org: 'dev'
+         space: 'tap'
+         deploymentOptions: 'manifest'
+         cfManifest: 'config/dev-tap/tas-java-web-app/delivery.yml'
+         createServices: false
+         bindServices: false
+     
