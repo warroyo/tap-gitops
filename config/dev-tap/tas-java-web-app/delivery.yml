@@ -5,5 +5,5 @@ applications:
   instances: 2
   docker:
     image: dev.registry.pivotal.io/warroyo/supply-chain/tas-java-web-app-dev-tap@sha256:0943939b3ca1bcb6527ad39bf766d84b9be4455a14a0b67ab7c4b6f4840750e1
-    username: warroyo@pivotal.io
+    username: robot$warroyo+tas
 
