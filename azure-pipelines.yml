@@ -11,7 +11,8 @@ trigger:
   paths:
     include:
     - config/dev-tap/tas-java-web-app/*
-
+pool:
+  name: default
 stages:
  - stage: Deploy
    jobs:
