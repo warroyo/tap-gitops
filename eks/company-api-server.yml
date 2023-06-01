@@ -1,0 +1,30 @@
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  name: company-api-server
+  labels:
+    apis.apps.tanzu.vmware.com/register-api: "true"
+    app.kubernetes.io/part-of: company-api-server
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: server
+    kapp.k14s.io/app: "1655842000127906348"
+    kapp.k14s.io/association: v1.1ad6cc3376109ad896268f73eebc23a0
+    app.kubernetes.io/component: deliverable
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/cluster-template-name: external-deliverable-template
+    carto.run/resource-name: deliverable
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/template-kind: ClusterTemplate
+    carto.run/template-lifecycle: mutable
+    carto.run/workload-name: company-api-server
+    carto.run/workload-namespace: dev-tap
+spec:
+  params:
+  - name: gitops_ssh_secret
+    value: github-warroyo-secret
+  source:
+    git:
+      url: https://github.com/warroyo/tap-gitops.git
+      ref:
+        branch: main
+    subPath: config/dev-tap/company-api-server
