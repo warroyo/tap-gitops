@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: company-api-probes
+  annotations:
+    kapp.k14s.io/update-strategy: fallback-on-replace
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
+  labels:
+    app.kubernetes.io/part-of: company-api-probes
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: server-probes
+    kapp.k14s.io/app: "1655842000127906348"
+    kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
+    app.kubernetes.io/component: run
+    carto.run/workload-name: company-api-probes
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: run
+      app.kubernetes.io/part-of: company-api-probes
+      apps.tanzu.vmware.com/has-tests: "true"
+      apps.tanzu.vmware.com/workload-type: server-probes
+      carto.run/workload-name: company-api-probes
+      kapp.k14s.io/app: "1655842000127906348"
+      kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
+  template:
+    metadata:
+      annotations:
+        conventions.carto.run/applied-conventions: |-
+          appliveview-sample/app-live-view-appflavour-check
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+        developer.conventions/target-containers: workload
+        kapp.k14s.io/identity: v1;dev-tap/carto.run/Workload/company-api-probes;carto.run/v1alpha1
+        kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"labels":{"app.kubernetes.io/part-of":"company-api-probes","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"server-probes","kapp.k14s.io/app":"1655842000127906348","kapp.k14s.io/association":"v1.dbc385f9be882042f7c090bd375964f2"},"name":"company-api-probes","namespace":"dev-tap"},"spec":{"build":{"env":[{"name":"BP_KEEP_FILES","value":"docs/*"}]},"params":[{"name":"probes","value":{"livenessProbe":{"tcpSocket":{"initialDelaySeconds":5,"periodSeconds":10,"port":8080}},"readinessProbe":{"tcpSocket":{"initialDelaySeconds":5,"periodSeconds":10,"port":8080}}}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/warroyo/tap-go-sample"}}}}'
+        kapp.k14s.io/original-diff-md5: c6e94dc94aed3401b5d0f26ed6c0bff3
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: company-api-probes
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: server-probes
+        carto.run/workload-name: company-api-probes
+        kapp.k14s.io/app: "1655842000127906348"
+        kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
+    spec:
+      containers:
+      - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-probes-dev-tap@sha256:2fa3a17d7d606c61b790801645299595208536edb5e8119f3a840e47bcfac7a2
+        name: workload
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+        livenessProbe:
+          tcpSocket:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            port: 8080
+        readinessProbe:
+          tcpSocket:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            port: 8080
+      serviceAccountName: default
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: company-api-probes
+  labels:
+    app.kubernetes.io/part-of: company-api-probes
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: server-probes
+    kapp.k14s.io/app: "1655842000127906348"
+    kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
+    app.kubernetes.io/component: run
+    carto.run/workload-name: company-api-probes
+spec:
+  selector:
+    app.kubernetes.io/component: run
+    app.kubernetes.io/part-of: company-api-probes
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: server-probes
+    carto.run/workload-name: company-api-probes
+    kapp.k14s.io/app: "1655842000127906348"
+    kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
+  ports:
+  - targetPort: 8080
+    port: 8080
+    name: http
+
