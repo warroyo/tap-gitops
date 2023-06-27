@@ -51,14 +51,14 @@ spec:
         securityContext:
           runAsUser: 1000
         livenessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 10
           tcpSocket:
-            initialDelaySeconds: 5
-            periodSeconds: 10
             port: 8080
         readinessProbe:
+          initialDelaySeconds: 5
+          periodSeconds: 10
           tcpSocket:
-            initialDelaySeconds: 5
-            periodSeconds: 10
             port: 8080
       serviceAccountName: default
 ---
