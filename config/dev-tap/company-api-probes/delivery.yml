@@ -10,8 +10,6 @@ metadata:
     app.kubernetes.io/part-of: company-api-probes
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: server-probes
-    kapp.k14s.io/app: "1655842000127906348"
-    kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
     app.kubernetes.io/component: run
     carto.run/workload-name: company-api-probes
 spec:
@@ -22,8 +20,6 @@ spec:
       apps.tanzu.vmware.com/has-tests: "true"
       apps.tanzu.vmware.com/workload-type: server-probes
       carto.run/workload-name: company-api-probes
-      kapp.k14s.io/app: "1655842000127906348"
-      kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
   template:
     metadata:
       annotations:
@@ -41,8 +37,6 @@ spec:
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: server-probes
         carto.run/workload-name: company-api-probes
-        kapp.k14s.io/app: "1655842000127906348"
-        kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
     spec:
       containers:
       - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-probes-dev-tap@sha256:2fa3a17d7d606c61b790801645299595208536edb5e8119f3a840e47bcfac7a2
@@ -70,8 +64,6 @@ metadata:
     app.kubernetes.io/part-of: company-api-probes
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: server-probes
-    kapp.k14s.io/app: "1655842000127906348"
-    kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
     app.kubernetes.io/component: run
     carto.run/workload-name: company-api-probes
 spec:
@@ -81,8 +73,6 @@ spec:
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: server-probes
     carto.run/workload-name: company-api-probes
-    kapp.k14s.io/app: "1655842000127906348"
-    kapp.k14s.io/association: v1.dbc385f9be882042f7c090bd375964f2
   ports:
   - targetPort: 8080
     port: 8080
