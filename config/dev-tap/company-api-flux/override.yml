@@ -7,7 +7,6 @@ spec:
     spec:
       containers:
         - name: workload
-          image: not used
           volumeMounts: 
             - name: custom-vars
               mountPath: /etc/config
