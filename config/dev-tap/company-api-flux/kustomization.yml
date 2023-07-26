@@ -13,4 +13,8 @@ configMapGenerator:
   - properties.yml
 
 patches:
-- override.yml
+- path: override.yml
+  target:
+    kind: Service
+    group: serving.knative.dev
+    
