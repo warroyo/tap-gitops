@@ -7,11 +7,10 @@ resources:
 - apiDescriptor.yml
 - delivery.yml
 
-
-patchesStrategicMerge:
-- override.yml
-
 configMapGenerator:
 - name: custom-vars
   files:
   - properties.yml
+
+patchesStrategicMerge:
+- override.yml
