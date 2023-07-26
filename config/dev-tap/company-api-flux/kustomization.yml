@@ -12,5 +12,5 @@ configMapGenerator:
   files:
   - properties.yml
 
-patchesStrategicMerge:
+patches:
 - override.yml
