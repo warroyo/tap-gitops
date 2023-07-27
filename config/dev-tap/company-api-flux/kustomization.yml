@@ -25,7 +25,7 @@ patches:
     - op: add
       path: /spec/template/spec/volumes
       value:
-        - name: config-vol
+        - name: custom-vars
           configMap:
             name: custom-vars
 
