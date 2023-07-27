@@ -13,8 +13,21 @@ configMapGenerator:
   - properties.yml
 
 patches:
-- path: override.yml
-  target:
+- target:
     kind: Service
     group: serving.knative.dev
+  patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts
+      value: 
+        volumes: custom-vars
+        mountPath: /etc/custom-vars
+    - op: add
+      path: /spec/template/spec/volumes
+      value:
+        - name: config-vol
+          configMap:
+            name: custom-vars
+
+
     
