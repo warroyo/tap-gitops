@@ -38,7 +38,7 @@ spec:
         kapp.k14s.io/association: v1.362c820049d5da3ba00f14bc6527da2f
     spec:
       containers:
-      - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-flux-dev-tap@sha256:2fa3a17d7d606c61b790801645299595208536edb5e8119f3a840e47bcfac7a2
+      - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-flux-dev-tap@sha256:f7f409d4c2468f40d7f5bac1f4a0d47450c7b6f7c0489800b45493575813f76f
         name: workload
         resources: {}
         securityContext:
