@@ -42,7 +42,7 @@ spec:
         carto.run/workload-name: company-api-server
     spec:
       containers:
-      - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-server-dev-tap@sha256:2fa3a17d7d606c61b790801645299595208536edb5e8119f3a840e47bcfac7a2
+      - image: dev.registry.pivotal.io/warroyo/supply-chain/company-api-server-dev-tap@sha256:6913fb9e0e14a48d0d37bbcf14d99e8c31d72dc22e84d74fba4dc04a7c60ef4c
         name: workload
         resources: {}
         securityContext:
