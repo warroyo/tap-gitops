@@ -4,6 +4,6 @@ applications:
   memory: 2046M
   instances: 2
   docker:
-    image: dev.registry.pivotal.io/warroyo/supply-chain/tas-java-web-app-dev-tap@sha256:de1ab2c82c08523d91b736ff7301c0744ec3ea94b30aa326ab9715ed779bc5ae
+    image: dev.registry.pivotal.io/warroyo/supply-chain/tas-java-web-app-dev-tap@sha256:f0046d7ddf8aee05c6ede8a546fa2bc2b9383edf99b99d121e26f982f681ff3d
     username: robot$warroyo+tas
 
